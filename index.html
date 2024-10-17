@@ -3,96 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Guessing Game</title>
+    <title>Password Guessing Game - Level 1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-        }
-        #game-container {
-            margin: 20px;
-        }
-        .level {
-            margin-bottom: 50px;
-        }
-        #level2 {
-            margin-top: 1000px; /* Make it far down to force scrolling */
-        }
-        .row {
             display: flex;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
         }
         input[type="text"] {
             margin-left: 10px;
             padding: 5px;
         }
-        #level3-hint {
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
 
-    <div id="game-container">
-        <h1>Guess the Password</h1>
-
-        <div class="level" id="level1">
-            <h2>Level 1</h2>
-            <div class="row">
-                <label for="password-input1">Enter password:</label>
-                <input type="text" id="password-input1">
-                <button onclick="checkPassword(1)">Submit</button>
-            </div>
+    <div class="container">
+        <h1>Guess the Password - Level 1</h1>
+        <div>
+            <label for="password-input">Enter password:</label>
+            <input type="text" id="password-input">
+            <button onclick="checkPassword()">Submit</button>
         </div>
-
-        <div class="level" id="level2">
-            <h2>Level 2</h2>
-            <div class="row">
-                <label for="password-input2">Enter password:</label>
-                <input type="text" id="password-input2">
-                <button onclick="checkPassword(2)">Submit</button>
-            </div>
-        </div>
-
-        <div class="level" id="level3">
-            <h2>Level 3</h2>
-            <div class="row">
-                <label for="password-input3">Enter password:</label>
-                <input type="text" id="password-input3">
-                <button onclick="checkPassword(3)">Submit</button>
-            </div>
-            <div id="level3-hint">Password: 12345678</div>
-        </div>
-
-        <div id="message"></div>
+        <p id="message"></p>
     </div>
 
     <script>
-        let currentLevel = 1;
-
-        function checkPassword(level) {
-            const messageDiv = document.getElementById('message');
-            let input, password;
-
-            if (level === 1) {
-                input = document.getElementById('password-input1').value;
-                password = "password";
-            } else if (level === 2) {
-                input = document.getElementById('password-input2').value;
-                password = "OhMyGooooooood";
-            } else if (level === 3) {
-                input = document.getElementById('password-input3').value;
-                password = ": 12345678";
-            }
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const password = "password";
+            const message = document.getElementById('message');
 
             if (input === password) {
-                messageDiv.textContent = `Correct! You've completed level ${level}`;
-                if (currentLevel === level && level < 3) {
-                    currentLevel++;
-                    alert(`Congrats! Move to Level ${currentLevel}`);
-                    window.scrollTo(0, document.getElementById(`level${currentLevel}`).offsetTop);
-                }
+                message.textContent = "Correct! Moving to Level 2...";
+                setTimeout(() => {
+                    window.location.href = "level2.html"; // Redirect to Level 2
+                }, 1000);
             } else {
-                messageDiv.textContent = `Incorrect password for level ${level}. Try again!`;
+                message.textContent = "Incorrect password. Try again!";
             }
         }
     </script>
