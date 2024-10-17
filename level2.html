@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Guessing Game - Level 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh; /* Increase height to make scrolling necessary */
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 100vh; /* Push the content down */
+        }
+        input[type="text"] {
+            margin-left: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Guess the Password - Level 2</h1>
+        <div>
+            <label for="password-input">Enter password:</label>
+            <input type="text" id="password-input">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const password = "OhMyGooooooood";
+            const message = document.getElementById('message');
+
+            if (input === password) {
+                message.textContent = "Correct! Moving to Level 3...";
+                setTimeout(() => {
+                    window.location.href = "level3.html"; // Redirect to Level 3
+                }, 1000);
+            } else {
+                message.textContent = "Incorrect password. Try again!";
+            }
+        }
+    </script>
+
+</body>
+</html>
